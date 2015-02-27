@@ -49,10 +49,10 @@ void	move_left(int tab[4][4])
 		while (++x < 4)
 		{
 			if (x != 3 && tab[y][x] == tab[y][x + 1])
-				{
-					tab[y][x] *= 2;
-					tab[y][x + 1] = 0;
-				}
+			{
+				tab[y][x] *= 2;
+				tab[y][x + 1] = 0;
+			}
 		}
 		x = 0;
 		while (++x < 4)
@@ -71,17 +71,17 @@ void	move_right(int tab[4][4])
 	int x;
 	int y;
 
-	y = -1;
-	while (++y < 4)
+	y = 4;
+	while (++y > -1)
 	{
 		x = -1;
-		while (++x < 4)
+		while (++x > 4)
 		{
 			if (x != 3 && tab[y][x] == tab[y][x + 1])
-				{
-					tab[y][x] *= 2;
-					tab[y][x + 1] = 0;
-				}
+			{
+				tab[y][x] *= 2;
+				tab[y][x + 1] = 0;
+			}
 		}
 		x = 0;
 		while (++x < 4)
