@@ -32,67 +32,16 @@ int main(int ac, char **av)
 		ch = getch(); /* Wait for user input */
 		if (ch == 68)
 			move_left(tab);
+		else if (ch == 67)
+			move_right(tab);
+		else if (ch == 65)
+			move_up(tab);
+		else if (ch == 66)
+			move_down(tab);
+		//printw("KEYCODE = %d\n", ch);
 		refresh();
 	}
 	endwin();
-}
-
-void	move_left(int tab[4][4])
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y < 4)
-	{
-		x = -1;
-		while (++x < 4)
-		{
-			if (x != 3 && tab[y][x] == tab[y][x + 1])
-			{
-				tab[y][x] *= 2;
-				tab[y][x + 1] = 0;
-			}
-		}
-		x = 0;
-		while (++x < 4)
-		{
-			if (tab[y][x - 1] == 0)
-			{
-				tab[y][x - 1] = tab[y][x];
-				tab[y][x] = 0;
-			}
-		}
-	}
-}
-
-void	move_right(int tab[4][4])
-{
-	int x;
-	int y;
-
-	y = 4;
-	while (++y > -1)
-	{
-		x = -1;
-		while (++x > 4)
-		{
-			if (x != 3 && tab[y][x] == tab[y][x + 1])
-			{
-				tab[y][x] *= 2;
-				tab[y][x + 1] = 0;
-			}
-		}
-		x = 0;
-		while (++x < 4)
-		{
-			if (tab[y][x - 1] == 0)
-			{
-				tab[y][x - 1] = tab[y][x];
-				tab[y][x] = 0;
-			}
-		}
-	}
 }
 
 void	show_tab(int tab[4][4])
