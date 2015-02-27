@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:20:46 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/27 23:37:49 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/27 23:40:24 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,69 +48,16 @@ int main(int ac, char **av)
 		{
 			//attron(COLOR_PAIR(1));
 			move_left(tab);
-			//attroff(COLOR_PAIR(1));
-		}
+		else if (ch == 67)
+			move_right(tab);
+		else if (ch == 65)
+			move_up(tab);
+		else if (ch == 66)
+			move_down(tab);
+		//printw("KEYCODE = %d\n", ch);
 		refresh();
 	}
 	endwin();
-}
-
-void	move_left(int tab[4][4])
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y < 4)
-	{
-		x = -1;
-		while (++x < 4)
-		{
-			if (x != 3 && tab[y][x] == tab[y][x + 1])
-				{
-					tab[y][x] *= 2;
-					tab[y][x + 1] = 0;
-				}
-		}
-		x = 0;
-		while (++x < 4)
-		{
-			if (tab[y][x - 1] == 0)
-			{
-				tab[y][x - 1] = tab[y][x];
-				tab[y][x] = 0;
-			}
-		}
-	}
-}
-
-void	move_right(int tab[4][4])
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y < 4)
-	{
-		x = -1;
-		while (++x < 4)
-		{
-			if (x != 3 && tab[y][x] == tab[y][x + 1])
-				{
-					tab[y][x] *= 2;
-					tab[y][x + 1] = 0;
-				}
-		}
-		x = 0;
-		while (++x < 4)
-		{
-			if (tab[y][x - 1] == 0)
-			{
-				tab[y][x - 1] = tab[y][x];
-				tab[y][x] = 0;
-			}
-		}
-	}
 }
 
 void	show_tab(int tab[4][4])
