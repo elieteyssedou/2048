@@ -22,9 +22,11 @@ void	move_up(int tab[4][4])
 	{
 		y = -1;
 		while (++y < 4)
-			if (y != 3 && tab[y + 1][x] == 0 && tab[y + 2][x] == 0 && tab[y][x] == tab[y + 3][x])
+			if (y != 3 && tab[y + 1][x] == 0 && tab[y + 2][x] == 0
+				&& tab[y][x] == tab[y + 3][x])
 				tab[y][x] *= 2, tab[y + 3][x] = 0;
-			else if (y < 2 && tab[y + 1][x] == 0 && tab[y][x] == tab[y + 2][x])
+			else if (y < 2 && tab[y + 1][x] == 0
+				&& tab[y][x] == tab[y + 2][x])
 				tab[y][x] *= 2, tab[y + 2][x] = 0;
 			else if (y < 1 && tab[y][x] == tab[y + 1][x])
 				tab[y][x] *= 2, tab[y + 1][x] = 0;
@@ -39,7 +41,10 @@ void	move_u(int tab[4][4], int x)
 	y = 0;
 	while (++y < 4)
 		if (tab[y - 1][x] == 0)
-			tab[y - 1][x] = tab[y][x], tab[y][x] = 0;
+		{
+			tab[y - 1][x] = tab[y][x];
+			tab[y][x] = 0;
+		}
 }
 
 void	move_down(int tab[4][4])
@@ -52,9 +57,11 @@ void	move_down(int tab[4][4])
 	{
 		y = 4;
 		while (--y > -1)
-			if (y > 2 && tab[y - 1][x] == 0 && tab[y - 2][x] == 0 && tab[y][x] == tab[y - 3][x])
+			if (y > 2 && tab[y - 1][x] == 0 && tab[y - 2][x] == 0
+				&& tab[y][x] == tab[y - 3][x])
 				tab[y][x] *= 2, tab[y - 3][x] = 0;
-			else if (y > 1 && tab[y - 1][x] == 0 && tab[y][x] == tab[y - 2][x])
+			else if (y > 1 && tab[y - 1][x] == 0
+				&& tab[y][x] == tab[y - 2][x])
 				tab[y][x] *= 2, tab[y - 2][x] = 0;
 			else if (y != 0 && tab[y][x] == tab[y - 1][x])
 				tab[y][x] *= 2, tab[y - 1][x] = 0;
@@ -70,6 +77,8 @@ void	move_d(int tab[4][4], int x)
 	y = 3;
 	while (--y > -1)
 		if (tab[y + 1][x] == 0)
-			tab[y + 1][x] = tab[y][x], tab[y][x] = 0;
+		{
+			tab[y + 1][x] = tab[y][x];
+			tab[y][x] = 0;
+		}
 }
-
