@@ -19,8 +19,6 @@ int main()
 	int ch;
 	int	max_y;
 	int	max_x;
-	int	oldx;
-	int	oldy;
 
 	initscr();
 	//start_color();
@@ -46,27 +44,24 @@ int main()
 	// init_color(1024, 237, 195, 9);
 	//init_color(2048, );
 	getmaxyx(stdscr, max_y, max_x);
-	while (ch != 32)
+	while (ch != 113)
 	{
-		oldx = max_x;
-		oldy = max_y;
 		getmaxyx(stdscr, max_y, max_x);
 		//mvwhline(stdscr, (max_y / 4) * 1, 1, 0, max_x - 1);
 		//mvwhline(stdscr, (max_y / 4) * 2, 1, 0, max_x - 1);
 		//mvwhline(stdscr, (max_y / 4) * 3, 1, 0, max_x - 1);
-		if (oldx != max_x || oldy != max_y)
-			wclear(stdscr);
+		wclear(stdscr);
 		box(stdscr, 0, 0);
-		mvwhline(stdscr, (max_y / 4) * 1, 1, 0, max_x - 1);
-		mvwhline(stdscr, (max_y / 4) * 2, 1, 0, max_x - 1);
-		mvwhline(stdscr, (max_y / 4) * 3, 1, 0, max_x - 1);
-		mvwvline(stdscr, 1, (max_x / 4) * 1, 0, max_y - 1);
-		mvwvline(stdscr, 1, (max_x / 4) * 2, 0, max_y - 1);
-		mvwvline(stdscr, 1, (max_x / 4) * 3, 0, max_y - 1);
+		mvwhline(stdscr, (max_y / 4) * 1, 1, 0, max_x - 2);
+		mvwhline(stdscr, (max_y / 4) * 2, 1, 0, max_x - 2);
+		mvwhline(stdscr, (max_y / 4) * 3, 1, 0, max_x - 2);
+		mvwvline(stdscr, 1, (max_x / 4) * 1, 0, max_y - 2);
+		mvwvline(stdscr, 1, (max_x / 4) * 2, 0, max_y - 2);
+		mvwvline(stdscr, 1, (max_x / 4) * 3, 0, max_y - 2);
 		//attron(COLOR_PAIR(4));
 		//attron(COLOR_PAIR(1));
 		//wclear(stdscr);
-		show_tab(tab);
+		show_tab(tab, max_x / 8, max_y / 8);
 		//attroff(COLOR_PAIR(1));
 		dup_tab(tab, otab);
 		ch = getch();
@@ -80,9 +75,51 @@ int main()
 			move_down(tab);
 		if (comp_tab(tab, otab))
 			add_num(tab, rand_num(), rand_24());
-		refresh();
+		else if (!comp_tab(tab, otab) && !test_zero(tab) && !test_move(tab, otab))
+		{
+			//wclear(stdscr);
+			mvprintw(max_y / 2, max_x / 2, "YOU LOSE !");
+			mvprintw(max_y / 2 + 1, max_x / 2, "Press \"Q\" to exit.");
+			break;
+		}
+		//refresh();
 	}
+	while (ch != 113)
+		ch = getch();
 	endwin();
+	return (0);
+}
+
+int test_move(int tab[4][4], int otab[4][4])
+{
+	move_down(tab);
+	if (comp_tab(tab, otab))
+	{
+		dup_tab(tab, otab);
+		return (1);
+	}
+	dup_tab(tab, otab);
+	move_up(tab);
+	if (comp_tab(tab, otab))
+	{
+		dup_tab(tab, otab);
+		return (1);
+	}
+	dup_tab(tab, otab);
+	move_left(tab);
+	if (comp_tab(tab, otab))
+	{
+		dup_tab(tab, otab);
+		return (1);
+	}
+	dup_tab(tab, otab);
+	move_right(tab);
+	if (comp_tab(tab, otab))
+	{
+		dup_tab(tab, otab);
+		return (1);
+	}
+	dup_tab(tab, otab);
 	return (0);
 }
 
@@ -135,7 +172,7 @@ void dup_tab(int tab[4][4], int otab[4][4])
 	}
 }
 
-void	show_tab(int tab[4][4])
+void	show_tab(int tab[4][4], int max_x, int max_y)
 {
 	int x;
 	int y;
@@ -146,12 +183,12 @@ void	show_tab(int tab[4][4])
 		x = -1;
 		while (++x < 4)
 		{
-			if (tab[y][x] == 0)
-				mvprintw(y * 5, x * 10, "0");
-			else
-			{
-				mvprintw(y * 5, x * 10, "%d", tab[y][x]);
-			}	
+			if (tab[y][x])
+				mvprintw((y * 2 + 1) * max_y, (x * 2 + 1) * max_x, "%d", tab[y][x]);
+			// else
+			// {
+			// 	mvprintw(y * 5, x * 10, "%d", tab[y][x]);
+			// }	
 		}
 	}
 }
@@ -169,7 +206,7 @@ int		rand_24(void)
 int		rand_num(void)
 {
 	srand(time(NULL));
-	return (rand() % 30);
+	return (rand() % 24);
 }
 
 int		add_num(int tab[4][4], int r, int num)
@@ -206,6 +243,23 @@ int		add_num(int tab[4][4], int r, int num)
 	return (0);
 }
 
+int test_zero(int tab[4][4])
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < 4)
+	{
+		x = -1;
+		while (++x < 4)
+		{
+			if (tab[y][x] == 0)
+				return (1);
+		}
+	}
+	return (0);
+}
 /*int my_rand(void)
 {
 	static int tab[N];

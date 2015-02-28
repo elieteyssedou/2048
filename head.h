@@ -20,7 +20,7 @@
 # define N 30
 
 
-void	show_tab(int tab[4][4]);
+void	show_tab(int tab[4][4], int max_x, int max_y);
 
 void	move_left(int tab[4][4]);
 void	move_l(int tab[4][4], int y);
@@ -41,5 +41,8 @@ void	move_d(int tab[4][4], int x);
 
 int 	comp_tab(int tab[4][4], int otab[4][4]);
 void	dup_tab(int tab[4][4], int otab[4][4]);
+
+int test_move(int tab[4][4], int otab[4][4]);
+int test_zero(int tab[4][4]);
 
 #endif
