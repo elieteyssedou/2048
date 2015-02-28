@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 23:20:26 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/28 18:28:04 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/28 18:30:36 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	move_up(int tab[4][4])
 	{
 		y = -1;
 		while (++y < 4)
-		{
-			if (y != 3 && tab[y][x] == tab[y + 1][x])
-			{
-				tab[y][x] *= 2;
-				tab[y + 1][x] = 0;
-			}
-		}
+			if (y != 3 && tab[y + 1][x] == 0 && tab[y + 2][x] == 0 && tab[y][x] == tab[y + 3][x])
+				tab[y][x] *= 2, tab[y + 3][x] = 0;
+			else if (y < 2 && tab[y + 1][x] == 0 && tab[y][x] == tab[y + 2][x])
+				tab[y][x] *= 2, tab[y + 2][x] = 0;
+			else if (y < 1 && tab[y][x] == tab[y + 1][x])
+				tab[y][x] *= 2, tab[y + 1][x] = 0;
 		move_u(tab, x), move_u(tab, x), move_u(tab, x);
 	}
 }
@@ -39,13 +38,8 @@ void	move_u(int tab[4][4], int x)
 
 	y = 0;
 	while (++y < 4)
-	{
 		if (tab[y - 1][x] == 0)
-		{
-			tab[y - 1][x] = tab[y][x];
-			tab[y][x] = 0;
-		}
-	}
+			tab[y - 1][x] = tab[y][x], tab[y][x] = 0;
 }
 
 void	move_down(int tab[4][4])
@@ -58,15 +52,13 @@ void	move_down(int tab[4][4])
 	{
 		y = 4;
 		while (--y > -1)
-			if (y != 0 && tab[y][x] == tab[y - 1][x])
-
-			{
-				tab[y][x] *= 2;
-				tab[y - 1][x] = 0;
-			}
-		move_d(tab, x);
-		move_d(tab, x);
-		move_d(tab, x);
+			if (y > 2 && tab[y - 1][x] == 0 && tab[y - 2][x] == 0 && tab[y][x] == tab[y - 3][x])
+				tab[y][x] *= 2, tab[y - 3][x] = 0;
+			else if (y > 1 && tab[y - 1][x] == 0 && tab[y][x] == tab[y - 2][x])
+				tab[y][x] *= 2, tab[y - 2][x] = 0;
+			else if (y != 0 && tab[y][x] == tab[y - 1][x])
+				tab[y][x] *= 2, tab[y - 1][x] = 0;
+		move_d(tab, x), move_d(tab, x), move_d(tab, x);
 		x++;
 	}
 }
