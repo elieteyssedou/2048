@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <ncurses.h>
 # include <stdlib.h>
+# include <time.h>
 # define N 30
 
 
@@ -26,8 +27,7 @@ void	move_l(int tab[4][4], int y);
 //int		my_rand(void);
 int		rand_24(void);
 int		rand_num(void);
-void	add_num(int tab[4][4], int r, int num);
-
+int		add_num(int tab[4][4], int r, int num);
 
 void	move_right(int tab[4][4]);
 void	move_r(int tab[4][4], int y);
@@ -38,7 +38,7 @@ void	move_u(int tab[4][4], int x);
 void	move_down(int tab[4][4]);
 void	move_d(int tab[4][4], int x);
 
-int comp_tab(int tab[4][4], int otab[4][4]);
-void dup_tab(int tab[4][4], int otab[4][4]);
+int 	comp_tab(int tab[4][4], int otab[4][4]);
+void	dup_tab(int tab[4][4], int otab[4][4]);
 
 #endif

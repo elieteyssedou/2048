@@ -25,10 +25,11 @@ int main()
 	noecho();
 	raw();
 
-	int tab[4][4] = {	{2, 2, 0, 2},
-						{2, 0, 4, 4},
-						{0, 2, 0, 2},
-						{2, 2, 2, 2} };
+	int tab[4][4] = {	{0, 0, 0, 0},
+						{0, 0, 0, 0},
+						{0, 2, 0, 0},
+						{2, 0, 0, 0} };
+	int otab[4][4];
 
 	start_color();
 
@@ -61,14 +62,14 @@ int main()
 		ch = getch(); /* Wait for user input */
 		if (ch == 68)
 			move_left(tab);
-		}
 		else if (ch == 67)
 			move_right(tab);
 		else if (ch == 65)
 			move_up(tab);
 		else if (ch == 66)
 			move_down(tab);
-		comp_tab(tab, otab); // SI COMP TAB RENVOIS 1 ALORS ON FAIS ADD NUM, CONDITION A RAJOUTER !!!!
+		if (comp_tab(tab, otab))
+			add_num(tab, rand_num(), rand_24()); // SI COMP TAB RENVOIS 1 ALORS ON FAIS ADD NUM, CONDITION A RAJOUTER !!!!
 		refresh();
 	}
 	endwin();
@@ -103,7 +104,7 @@ void dup_tab(int tab[4][4], int otab[4][4])
 	{
 		x = -1;
 		while (++x < 4)
-			otab[y][x] == tab[y][x]
+			otab[y][x] = tab[y][x];
 	}
 }
 
@@ -141,8 +142,7 @@ int		rand_24(void)
 	r = rand() % 100;
 	if (r <= 10)
 		return (4);
-	else if (r > 10)
-		return (2);
+	return (2);
 }
 
 int		rand_num(void)
