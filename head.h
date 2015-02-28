@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:21:02 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/28 18:27:50 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/28 22:24:01 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	move_l(int tab[4][4], int y);
 int		rand_24(void);
 int		rand_num(void);
 int		add_num(int tab[4][4], int r, int num);
+void	initab(int tab[4][4]);
 
 void	move_right(int tab[4][4]);
 void	move_r(int tab[4][4], int y);
