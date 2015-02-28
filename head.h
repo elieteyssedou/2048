@@ -31,4 +31,7 @@ void	move_u(int tab[4][4], int x);
 void	move_down(int tab[4][4]);
 void	move_d(int tab[4][4], int x);
 
+int comp_tab(int tab[4][4], int otab[4][4]);
+void dup_tab(int tab[4][4], int otab[4][4]);
+
 #endif

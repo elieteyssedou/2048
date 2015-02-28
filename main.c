@@ -44,6 +44,7 @@ int main()
 		wclear(stdscr);
 		show_tab(tab);
 		//attroff(COLOR_PAIR(1));
+		dup_tab(tab, otab);
 		ch = getch(); /* Wait for user input */
 		if (ch == 68)
 			move_left(tab);
@@ -53,14 +54,14 @@ int main()
 			move_up(tab);
 		else if (ch == 66)
 			move_down(tab);
-		//printw("KEYCODE = %d\n", ch);
+		comp_tab(tab, otab); // SI COMP TAB RENVOIS 1 ALORS ON FAIS ADD NUM, CONDITION A RAJOUTER !!!!
 		refresh();
 	}
 	endwin();
 	return (0);
 }
 
-int tab_comp(int tab[4][4], int otab[4][4])
+int comp_tab(int tab[4][4], int otab[4][4])
 {
 	int y;
 	int x;
@@ -76,6 +77,20 @@ int tab_comp(int tab[4][4], int otab[4][4])
 		}
 	}
 	return (0);
+}
+
+void dup_tab(int tab[4][4], int otab[4][4])
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < 4)
+	{
+		x = -1;
+		while (++x < 4)
+			otab[y][x] == tab[y][x]
+	}
 }
 
 void	show_tab(int tab[4][4])
