@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:20:46 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/28 18:35:38 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/28 18:55:45 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		rand_num(void)
 	return (rand() % 20);
 }
 
-void	add_num(int tab[4][4], int r, int num)
+int		add_num(int tab[4][4], int r, int num)
 {
 	int	x;
 	int	y;
@@ -154,8 +154,7 @@ void	add_num(int tab[4][4], int r, int num)
 			x = -1;
 		}
 	}
-	if (index == 0)
-		return ;
+	return (index);
 }
 
 /*int my_rand(void)
