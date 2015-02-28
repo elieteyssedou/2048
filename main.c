@@ -6,13 +6,13 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:20:46 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/28 18:07:33 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/28 18:25:54 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-int main(int ac, char **av)
+int main()
 {
 	int ch;
 	int	max_y;
@@ -25,23 +25,23 @@ int main(int ac, char **av)
 	noecho();
 	raw();
 
-	int tab[4][4] = {	{2, 2, 0, 0},
-						{2, 2, 4, 4},
-						{0, 2, 2, 0},
-						{2, 2, 2, 2} };
+	int tab[4][4] = {	{0, 2, 0, 2},
+						{0, 2, 4, 4},
+						{2, 0, 0, 2},
+						{0, 2, 2, 2} };
 
 	start_color();
-	init_color(COLOR_RED, 238, 228, 217);
-	init_pair(4, COLOR_RED, COLOR_BLACK);
-	init_color(4, 243, 178, 116);
-	init_color(8, 247, 149, 93);
-	init_color(16, 248, 124, 90);
-	init_color(32, 249, 93, 50);
-	init_color(64, 238, 208, 107);
-	init_color(128, 238, 205, 88);
-	init_color(256, 237, 200, 67);
-	init_color(512, 238, 198, 44);
-	init_color(1024, 237, 195, 9);
+
+	// init_color(COLOR_RED, 238, 228, 217);
+	// init_color(4, 243, 178, 116);
+	// init_color(8, 247, 149, 93);
+	// init_color(16, 248, 124, 90);
+	// init_color(32, 249, 93, 50);
+	// init_color(64, 238, 208, 107);
+	// init_color(128, 238, 205, 88);
+	// init_color(256, 237, 200, 67);
+	// init_color(512, 238, 198, 44);
+	// init_color(1024, 237, 195, 9);
 	//init_color(2048, );
 	getmaxyx(stdscr, max_y, max_x);
 	while (ch != 32)
@@ -57,12 +57,12 @@ int main(int ac, char **av)
 			
 		
 		//attron(COLOR_PAIR(4));
+		//attron(COLOR_PAIR(1));
+		wclear(stdscr);
 		show_tab(tab);
 		//attroff(COLOR_PAIR(4));
 		ch = getch(); /* Wait for user input */
 		if (ch == 68)
-		{
-			//attron(COLOR_PAIR(1));
 			move_left(tab);
 		}
 		else if (ch == 67)
@@ -76,6 +76,7 @@ int main(int ac, char **av)
 		refresh();
 	}
 	endwin();
+	return (0);
 }
 
 void	show_tab(int tab[4][4])
@@ -93,30 +94,13 @@ void	show_tab(int tab[4][4])
 				mvprintw(y * 5, x * 10, "0");
 			else
 			{
-				if (tab[y][x] == 2)
-				{
+
+				// if (tab[y][x] == 2)
+				// {
 					//attron(512);
 					mvprintw(y * 5, x * 10, "%d", tab[y][x]);
 					//attroff(512);
-				}
-				if (tab[y][x] == 4)
-				{
-					//attron(512);
-					mvprintw(y * 5, x * 10, "%d", tab[y][x]);
-					//attroff(512);
-				}
-				if (tab[y][x] == 8)
-				{
-					//attron(512);
-					mvprintw(y * 5, x * 10, "%d", tab[y][x]);
-					//attroff(512);
-				}
-				if (tab[y][x] == 16)
-				{
-					//attron(512);
-					mvprintw(y * 5, x * 10, "%d", tab[y][x]);
-					//attroff(512);
-				}
+				// }
 			}	
 		}
 	}
