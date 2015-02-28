@@ -60,6 +60,24 @@ int main()
 	return (0);
 }
 
+int tab_comp(int tab[4][4], int otab[4][4])
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < 4)
+	{
+		x = -1;
+		while (++x < 4)
+		{
+			if (tab[y][x] != otab[y][x])
+				return (1);
+		}
+	}
+	return (0);
+}
+
 void	show_tab(int tab[4][4])
 {
 	int x;
