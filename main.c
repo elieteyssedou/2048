@@ -52,10 +52,6 @@ int main()
 		box(stdscr, 0, 0);
 		if (oldx != max_x || oldy != max_y)
 			wclear(stdscr);
-		
-		
-			
-		
 		//attron(COLOR_PAIR(4));
 		//attron(COLOR_PAIR(1));
 		wclear(stdscr);
@@ -176,7 +172,7 @@ int		add_num(int tab[4][4], int r, int num)
 				else
 				{
 					tab[y][x] = num;
-					return ;
+					return (1);
 				}
 			}
 		}
@@ -186,7 +182,7 @@ int		add_num(int tab[4][4], int r, int num)
 			x = -1;
 		}
 	}
-	return (index);
+	return (0);
 }
 
 /*int my_rand(void)
