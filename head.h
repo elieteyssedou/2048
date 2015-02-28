@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 20:21:02 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/27 22:38:21 by ahua             ###   ########.fr       */
+/*   Updated: 2015/02/28 17:59:49 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,23 @@
 
 # include "libft/libft.h"
 # include <ncurses.h>
+# include <stdlib.h>
+# define N 30
 
 
 void	show_tab(int tab[4][4]);
 void	move_left(int tab[4][4]);
+void	move_l(int tab[4][4], int y);
+void	move_right(int tab[4][4]);
+void	move_r(int tab[4][4], int y);
+void	move_up(int tab[4][4]);
+void	move_u(int tab[4][4], int x);
+void	move_down(int tab[4][4]);
+void	move_d(int tab[4][4], int x);
+//int		my_rand(void);
+int		rand_24(void);
+int		rand_num(void);
+void	add_num(int tab[4][4], int r, int num);
+
 
 #endif

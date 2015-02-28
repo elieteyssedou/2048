@@ -6,7 +6,7 @@
 /*   By: eteyssed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 23:15:54 by eteyssed          #+#    #+#             */
-/*   Updated: 2015/02/27 23:15:55 by eteyssed         ###   ########.fr       */
+/*   Updated: 2015/02/28 18:01:01 by ahua             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	move_left(int tab[4][4])
 			}
 		}
 		move_l(tab, y), move_l(tab, y), move_l(tab, y);
+		add_num(tab, rand_num(), rand_24());
 	}
 }
 
@@ -63,6 +64,7 @@ void	move_right(int tab[4][4])
 			if (x != 0 && tab[y][x] == tab[y][x - 1])
 				tab[y][x] *= 2, tab[y][x - 1] = 0;
 		move_r(tab, y), move_r(tab, y), move_r(tab, y);
+		add_num(tab, rand_num(), rand_24());
 	}
 }
 
