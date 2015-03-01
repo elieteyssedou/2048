@@ -17,32 +17,43 @@
 # include <ncurses.h>
 # include <stdlib.h>
 # include <time.h>
-# define N 30
 
+typedef struct	s_max
+{
+	int			max_x;
+	int			max_y;
+}				t_max;
 
-void	show_tab(int tab[4][4], int max_x, int max_y);
+enum e_const
+{
+	WIN_VALUE = 32
+};
 
 void	move_left(int tab[4][4]);
-void	move_l(int tab[4][4], int y);
 //int		my_rand(void);
 int		rand_24(void);
 int		rand_num(void);
 int		add_num(int tab[4][4], int r, int num);
-void	initab(int tab[4][4]);
 
 void	move_right(int tab[4][4]);
-void	move_r(int tab[4][4], int y);
 
 void	move_up(int tab[4][4]);
-void	move_u(int tab[4][4], int x);
 
 void	move_down(int tab[4][4]);
-void	move_d(int tab[4][4], int x);
 
 int 	comp_tab(int tab[4][4], int otab[4][4]);
 void	dup_tab(int tab[4][4], int otab[4][4]);
 
 int test_move(int tab[4][4], int otab[4][4]);
 int test_zero(int tab[4][4]);
+
+int		test_win(int tab[4][4]);
+void	print_box(int max_x, int max_y, int tab[4][4], int p);
+
+void	ft_exit_power(void);
+void	moves(int ch, int tab[4][4]);
+void	all_init(int tab[4][4]);
+void	win(int tab[4][4], t_max *max, int *ch, int *w);
+void	loose(int tab[4][4], int otab[4][4], t_max *max, int *ch);
 
 #endif
